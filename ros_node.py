@@ -23,8 +23,11 @@ class Transmitter(object):
         while self.pose == None:
             r.sleep()
         while not rospy.is_shutdown():
-            print(self.pose.x) 
+            self.publish(self.pose)
             r.sleep()
+
+    def publish(self, pose):
+        requests.post(f'{SERVER_ADDRESS}/{TURTLE_NAME}/{pose.x}/{pose.y}')
 
 if __name__ == "__main__":
     TR = Transmitter()
