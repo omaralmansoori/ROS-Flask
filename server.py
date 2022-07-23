@@ -17,7 +17,7 @@ class Update(Resource):
     def post(self, robot, x, y):
         file = open(f'{robot}_loc.csv', 'a')
         date = datetime.strftime(datetime.utcnow(), "%Y-%m-%d %H:%M:%S")
-        file.writelines([f"{date}, {x}, {y}"])
+        file.writelines([f"{date}, {x}, {y}\n"])
         file.close()
         return 200
 
@@ -27,8 +27,8 @@ class Read(Resource):
         with open(f'{robot}_loc.csv', 'r') as f:
             last_line = f.readlines()[-1]
             params = last_line.split(',')
-            x = params[1]
-            y = params[2]
+            x = float(params[1])
+            y = float(params[2])
             self.plot(x, y)
             plt.savefig(f'{robot}.png')
         return send_file(f'{robot}.png', mimetype='image/png')
