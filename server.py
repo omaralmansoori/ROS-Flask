@@ -37,8 +37,8 @@ class Read(Resource):
         plt.style.use('_mpl-gallery')
         fig, ax = plt.subplots()
         ax.scatter(x, y, s=[50], c=[50], vmin=0, vmax=15)
-        ax.set(xlim=(0, 15), xticks=[i for i in range(-1, 15)],
-                ylim=(0, 15), yticks=[i for i in range(-1, 15)])
+        ax.set(xlim=(0, 15), xticks=[i for i in range(0, 15)],
+                ylim=(0, 15), yticks=[i for i in range(0, 15)])
 
 
 
